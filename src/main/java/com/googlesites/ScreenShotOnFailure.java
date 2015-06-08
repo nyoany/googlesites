@@ -34,7 +34,7 @@ public class ScreenShotOnFailure extends TestListenerAdapter {
 		
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		DateFormat dateFormat = new SimpleDateFormat("dd_MMM_yyyy__hh_mm_ssaa");
-		String destDir = "D:\\de invatat\\proiect TW\\GoogleSitesAutomationTesting\\testsOutput\\";
+		String destDir = "D:\\de invatat\\workspace\\testsOutput\\";
 		new File(destDir).mkdirs();
 		String destFile = result.getMethod().getMethodName() + dateFormat.format(new Date()) + ".png";
  
@@ -45,6 +45,3 @@ public class ScreenShotOnFailure extends TestListenerAdapter {
 		}
 	}
 }
-
-//pe clasa de test @Listeners({ScreenShotOnFailure.class})
-

@@ -8,12 +8,14 @@ package com.googlesites;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author Oana
  */
+@Listeners({ScreenShotOnFailure.class})
 public class CaptchaTest {
 
        static WebDriver driver = new WebDriverInstance().getCurrentDriverInstance();
