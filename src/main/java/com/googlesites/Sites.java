@@ -5,6 +5,7 @@
  */
 package com.googlesites;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,8 @@ public class Sites {
     private final String CREATE_BUTTON = "ownerCreateBtn";
     private final String OPTIONS_LIST_CLASS = "sites-dashboard-sidebar";
     private final String OPTION_XPATH = "//ul/li/a[contains(text(),'@text@')]";
-    private final String SITE_XPATH = "//a[contains(text(),'@text@')]";
+    private final String SITES_LIST_CSS = "a[href*='/site/@siteURL@/']";
+    private final String SITES_LIST = "div[class*='goog-ws-dash-yours goog-ws-dash-inside'] ul li";
 
     Sites(WebDriver driver) {
         this.driver = driver;
@@ -48,13 +50,33 @@ public class Sites {
 
         driver.findElement(By.id(CREATE_BUTTON)).click();
         CreateSitePage csp = new CreateSitePage(driver);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return csp;
     }
 
     public Site navigateToSite(String siteName) {
-
-        driver.findElement(By.xpath(SITE_XPATH.replace("@text@", siteName))).click();
+ 
+        String mainWindow = driver.getWindowHandle();
+        driver.findElement(By.cssSelector(SITES_LIST_CSS.replace("@siteURL@", siteName))).click();
+        
+        for(String handle : driver.getWindowHandles()){
+        if(!handle.equals(mainWindow)){
+        driver.switchTo().window(handle);
+        }
+        }
         return new Site(driver);
+    }
+    
+    public void verifyTheOnlySitesAre(List<String> sitesURLs){
+    
+        int numberOfSites = driver.findElements(By.cssSelector(SITES_LIST)).size();
+        assertEquals(sitesURLs.size(), numberOfSites, "Expected "+ sitesURLs.size() + " but was " + numberOfSites + "."); 
+        
+        for(String siteURL : sitesURLs){
+        
+            assertTrue(driver.findElement(By.cssSelector(SITES_LIST_CSS.replace("@siteURL@", siteURL))).isDisplayed(), "The site with the URL "+ 
+                   siteURL + " is not displayed.");
+        }
+        
     }
 }

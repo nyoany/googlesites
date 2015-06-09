@@ -72,27 +72,16 @@ public class CreateSitePage {
 
     public void clickOnCapcha() {
 
-      //  boolean fail = true;
         Region r = new Region(new DesktopScreenRegion().getBounds());
         Pattern captcha = new Pattern("D:\\photos\\captcha.png");
+        Match m = null;
         try {
-            r.find(captcha).click();
+            m = r.find(captcha);
         } catch (FindFailed ex) {
             Logger.getLogger(CreateSitePage.class.getName()).log(Level.SEVERE, null, ex);
+            fail("The captcha icon has not been found.");
         }
-      /*  long start = System.currentTimeMillis();
-        long elapsedTimeMillis = 0;
-
-        while (fail && elapsedTimeMillis <= 20000) {
-            try {
-                verifyNotRobotDisplayed();
-            } catch (FindFailed ex) {
-                elapsedTimeMillis = System.currentTimeMillis() - start;
-                Logger.getLogger(CreateSitePage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            fail = false;
-        }
-    */
+        m.click();
               }
 
     public Match verifyNotRobotDisplayed() throws FindFailed {
