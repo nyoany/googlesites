@@ -72,17 +72,9 @@ public class CreateSitePage {
 
     public void clickOnCapcha() {
 
-        Region r = new Region(new DesktopScreenRegion().getBounds());
-        Pattern captcha = new Pattern("D:\\photos\\captcha.png");
-        Match m = null;
-        try {
-            m = r.find(captcha);
-        } catch (FindFailed ex) {
-            Logger.getLogger(CreateSitePage.class.getName()).log(Level.SEVERE, null, ex);
-            fail("The captcha icon has not been found.");
-        }
-        m.click();
-              }
+        Sikuli sikuli = new Sikuli();
+        sikuli.findAndClick("D:\\photos\\captcha.png", "captcha icon");
+    }
 
     public Match verifyNotRobotDisplayed() throws FindFailed {
 

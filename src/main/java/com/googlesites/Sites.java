@@ -55,28 +55,28 @@ public class Sites {
     }
 
     public Site navigateToSite(String siteName) {
- 
+
         String mainWindow = driver.getWindowHandle();
         driver.findElement(By.cssSelector(SITES_LIST_CSS.replace("@siteURL@", siteName))).click();
-        
-        for(String handle : driver.getWindowHandles()){
-        if(!handle.equals(mainWindow)){
-        driver.switchTo().window(handle);
-        }
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(mainWindow)) {
+                driver.switchTo().window(handle);
+            }
         }
         return new Site(driver);
     }
-    
-    public void verifyTheOnlySitesAre(List<String> sitesURLs){
-    
+
+    public void verifyTheOnlySitesAre(List<String> sitesURLs) {
+
         int numberOfSites = driver.findElements(By.cssSelector(SITES_LIST)).size();
-        assertEquals(sitesURLs.size(), numberOfSites, "Expected "+ sitesURLs.size() + " but was " + numberOfSites + "."); 
-        
-        for(String siteURL : sitesURLs){
-        
-            assertTrue(driver.findElement(By.cssSelector(SITES_LIST_CSS.replace("@siteURL@", siteURL))).isDisplayed(), "The site with the URL "+ 
-                   siteURL + " is not displayed.");
+        assertEquals(sitesURLs.size(), numberOfSites, "Expected " + sitesURLs.size() + " but was " + numberOfSites + ".");
+
+        for (String siteURL : sitesURLs) {
+
+            assertTrue(driver.findElement(By.cssSelector(SITES_LIST_CSS.replace("@siteURL@", siteURL))).isDisplayed(), "The site with the URL "
+                    + siteURL + " is not displayed.");
         }
-        
+
     }
 }
