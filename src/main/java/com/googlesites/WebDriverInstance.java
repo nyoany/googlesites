@@ -18,18 +18,24 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class WebDriverInstance {
 
     static final FirefoxProfile profile = new FirefoxProfile();
-    static WebDriver driver;
+    WebDriver driver;
 
     public WebDriver getCurrentDriverInstance() {
-        if (driver == null) {
-            startDriver();
+        if(driver == null){
+        return startDriver();
         }
         return driver;
 
     }
 
-    public void startDriver() {
+    public WebDriver startDriver() {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         driver.manage().window().maximize();
+        return driver;
+    }
+    
+    public void setCurrentDriver(WebDriver driver){
+        
+        this.driver = driver;
     }
 }

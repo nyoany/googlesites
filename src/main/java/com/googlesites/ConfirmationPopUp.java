@@ -51,12 +51,12 @@ public class ConfirmationPopUp {
     public void confirm(){
     
     driver.findElement(By.cssSelector(CONFIRMATION_BUTTONS.replace("@action@", "ok"))).click();
-    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
     
     public void cancel(){
     
     driver.findElement(By.cssSelector(CONFIRMATION_BUTTONS.replace("@action@", "cancel"))).click();
-    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 }

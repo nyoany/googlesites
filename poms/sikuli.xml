@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <modelVersion>1.0.0</modelVersion>
     <groupId>com.licence</groupId>
     <artifactId>GoogleSitesAutomationTesting</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -43,9 +43,7 @@
     </dependencies> 
      <build>
         <plugins>
-            <!-- using the compiler plug-in to specify that this project is to be compiled with JDK 1.6 -->
-            <!-- This is needed so that we get the JDK annotation support that was introduced recently -->
-            <plugin>
+                <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
@@ -60,7 +58,7 @@
                 <version>2.6</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\java\com\googlesites\Regression.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\java\com\googlesites\Sikuli.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>false</testFailureIgnore>
                 </configuration>

@@ -61,6 +61,8 @@ public class Sites {
 
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(mainWindow)) {
+                driver.switchTo().window(mainWindow);
+                driver.close();
                 driver.switchTo().window(handle);
             }
         }

@@ -73,7 +73,7 @@ public class Site {
         if (buttonLabel.equals("Cancel")) {
 
         }
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public void changeThePageTitleTo(String newTitle) {
