@@ -11,15 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterGroups;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -51,22 +42,18 @@ public class IntranetTests {
         site = sites.navigateToSite("intranetlintranetl111");
         IntranetPage intranet = new IntranetPage(driver);
         intranet.navigateTo("Documents");
-        sikuli.find("D:\\photos\\Documents.png", "Documents page");
+        sikuli.find("Documents.png", "Documents page", 0.7);
         intranet.addComment("Nice site!");
         intranet.navigateTo("Calendar");
-        sikuli.find("D:\\photos\\Calendar.png", "Calendar page");
+        sikuli.find("Calendar.png", "Calendar page", 0.7);
         intranet.navigateTo("Directory");
-        sikuli.find("D:\\photos\\Directory.png", "Directory page");
+        sikuli.find("Directory.png", "Directory page", 0.7);
         intranet.navigateTo("Discussion");
-        sikuli.find("D:\\photos\\Discussion.png", "Discussion page");
+        sikuli.find("Discussion.png", "Discussion page", 0.7);
         intranet.navigateTo("Announcements");
-        sikuli.find("D:\\photos\\Announcements.png", "Announcements page");
-        intranet.navigateTo("Resources");
-        sikuli.find("D:\\photos\\Resources.png", "Resources page");
-        intranet.navigateTo("Contact");
-        sikuli.find("D:\\photos\\Contact.png", "Contact page");
+        sikuli.find("Announcements.png", "Announcements page", 0.7);
         intranet.navigateTo("Sitemap");
-        sikuli.find("D:\\photos\\Sitemap.png", "Sitemap page");
+        sikuli.find("Sitemap.png", "Sitemap page", 0.7);
         driver.close();
     }
  
@@ -82,7 +69,7 @@ public class IntranetTests {
         sites = loginPage.logIn("johnjjones02@gmail.com", "MyPasswordIsC0@l");
         site = sites.navigateToSite("intranetlintranetl111");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        sikuli.find("D:\\photos\\intranet.png","Intranet template page");
+        sikuli.find("intranet.png","Intranet template page", 0.7);
         driver.close();
        }
 

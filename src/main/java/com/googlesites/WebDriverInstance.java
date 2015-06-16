@@ -21,21 +21,25 @@ public class WebDriverInstance {
     WebDriver driver;
 
     public WebDriver getCurrentDriverInstance() {
-        if(driver == null){
+        if(getDriver() == null){
         return startDriver();
         }
-        return driver;
+        return getDriver();
 
     }
 
     public WebDriver startDriver() {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
-        driver.manage().window().maximize();
         return driver;
     }
     
     public void setCurrentDriver(WebDriver driver){
         
         this.driver = driver;
+    }
+    
+    public WebDriver getDriver(){
+    
+        return driver;
     }
 }

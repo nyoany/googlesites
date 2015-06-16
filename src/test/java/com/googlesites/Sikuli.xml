@@ -13,6 +13,7 @@
 		<classes>
 			<class name="com.googlesites.CaptchaTest" />
 			<class name="com.googlesites.IntranetTests" />
+                        <class name="com.googlesites.MapsTests" />
 		</classes>
  
 	</test>

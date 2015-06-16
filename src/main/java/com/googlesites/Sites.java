@@ -24,7 +24,9 @@ public class Sites {
     private final String OPTION_XPATH = "//ul/li/a[contains(text(),'@text@')]";
     private final String SITES_LIST_CSS = "a[href*='/site/@siteURL@/']";
     private final String SITES_LIST = "div[class*='goog-ws-dash-yours goog-ws-dash-inside'] ul li";
-
+    private final String NAVIGATION_OPTIONS = "a[title*='Google Apps']"; 
+    private final String MAPS = "a[href*='https://maps.google.ro/maps']";
+    
     Sites(WebDriver driver) {
         this.driver = driver;
     }
@@ -66,6 +68,7 @@ public class Sites {
                 driver.switchTo().window(handle);
             }
         }
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return new Site(driver);
     }
 
@@ -80,5 +83,22 @@ public class Sites {
                     + siteURL + " is not displayed.");
         }
 
+    }
+    
+    public MapsPage navigateToMaps(){
+    
+        String mainWindow = driver.getWindowHandle();
+        driver.findElement(By.cssSelector(NAVIGATION_OPTIONS)).click();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.findElement(By.cssSelector(MAPS)).click();
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(mainWindow)) {
+                driver.switchTo().window(mainWindow);
+                driver.close();
+                driver.switchTo().window(handle);
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return new MapsPage(driver);
     }
 }
