@@ -80,12 +80,14 @@ public class Site {
 
         driver.findElement(By.cssSelector(EDIT_PAGE_TITLE)).clear();
         driver.findElement(By.cssSelector(EDIT_PAGE_TITLE)).sendKeys(newTitle);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public void changePageContentTo(String newContent) {
 
         driver.findElement(By.id(EDITABLE_CONTENT)).clear();
         driver.findElement(By.id(EDITABLE_CONTENT)).sendKeys(newContent);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 }

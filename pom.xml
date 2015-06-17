@@ -41,7 +41,7 @@
             <version>1.0.1</version>
         </dependency>
     </dependencies> 
-     <build>
+    <build>
         <plugins>
             <!-- using the compiler plug-in to specify that this project is to be compiled with JDK 1.6 -->
             <!-- This is needed so that we get the JDK annotation support that was introduced recently -->

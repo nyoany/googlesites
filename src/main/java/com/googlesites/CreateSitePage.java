@@ -71,7 +71,7 @@ public class CreateSitePage {
     }
 
     public void clickOnCapcha() {
-
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         Sikuli sikuli = new Sikuli();
         sikuli.findAndClick("captcha.png", "captcha icon");
     }

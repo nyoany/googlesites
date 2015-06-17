@@ -14,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -36,13 +37,11 @@ public class IntranetTests {
     Sikuli sikuli = new Sikuli();
     FirefoxProfile profile = new FirefoxProfile();
 
-    
-     @DataProvider()
-     public static Object[][] intranetPages() {
-      return new Object[][] {{"Documents", true}, {"Calendar", true}, {"Directory", true}, {"Discussion", true}, {"Announcements", true}, {"Sitemap", true}};
-   }
+    @DataProvider()
+    public static Object[][] intranetPages() {
+        return new Object[][]{{"Documents", true}, {"Calendar", true}, {"Directory", true}, {"Discussion", true}, {"Announcements", true}, {"Sitemap", true}};
+    }
 
-   
     @Test(groups = "sikuli", enabled = false)
     public void intranetTest() {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
@@ -69,10 +68,10 @@ public class IntranetTests {
         sikuli.find("Sitemap.png", "Sitemap page", 0.7);
         driver.close();
     }
-    
+
     @Test(groups = "sikuli", priority = 1)
-    public void navigateToIntranet(){
-    
+    public void navigateToIntranet() {
+
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         driver.manage().window().maximize();
         WebDriverInstance wdi = new WebDriverInstance();
@@ -84,18 +83,17 @@ public class IntranetTests {
         site = sites.navigateToSite("intranetlintranetl111");
         intranet = new IntranetPage(driver);
     }
-    
+
     @Test(groups = "sikuli", dataProvider = "intranetPages", priority = 2, dependsOnMethods = {"navigateToIntranet"})
-        public void verifyIntranetPages(String pageName, boolean result){
-       
+    public void verifyIntranetPages(String pageName, boolean result) {
+
         intranet.navigateTo(pageName);
-        assertEquals(sikuli.find(pageName + ".png", pageName + " page", 0.7), result);
-        }
-    
-    
+        assertEquals(sikuli.find(pageName + ".png", pageName + " page", 0.7) != null, result);
+    }
+
     @AfterClass
-     public void closeBrowser(){
+    public void closeBrowser() {
         driver.close();
-       }
+    }
 
 }

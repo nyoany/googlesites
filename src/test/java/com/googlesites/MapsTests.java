@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.googlesites;
 
 import java.io.File;
@@ -25,7 +24,7 @@ import org.testng.annotations.Test;
  */
 @Listeners({ScreenShotOnFailure.class})
 public class MapsTests {
- 
+
     Overview overview;
     LoginPage loginPage;
     Sites sites;
@@ -33,10 +32,9 @@ public class MapsTests {
     Sikuli sikuli = new Sikuli();
     WebDriver driver;
     static final FirefoxProfile profile = new FirefoxProfile();
-    
-    
+
     @Test(priority = 1, groups = "sikuli")
-    public void navigateToMaps(){
+    public void navigateToMaps() {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         driver.manage().window().maximize();
         WebDriverInstance wdi = new WebDriverInstance();
@@ -46,24 +44,24 @@ public class MapsTests {
         loginPage = overview.navigateToLogin();
         sites = loginPage.logIn("johnjjones02@gmail.com", "MyPasswordIsC0@l");
         maps = sites.navigateToMaps();
-        
-      
+
     }
+
     @Test(dependsOnMethods = {"navigateToMaps"}, groups = "sikuli")
-    public void verifySearch(){
-      
-     sikuli.takeScreenshotTo("Iasi");
-     sikuli.compareScreenWith("Iasi");   
-     sikuli.findAndClose("GoogleMapsPopUp");
-     maps.search("Iasi");
-     driver.close();
+    public void verifySearch() {
+
+        sikuli.takeScreenshotTo("Iasi");
+        sikuli.compareScreenWith("Iasi");
+        sikuli.findAndClose("GoogleMapsPopUp");
+        maps.search("Iasi");
+        driver.close();
     }
-    
+
     @Test(dependsOnMethods = {"navigateToMaps"}, groups = "sikuli", enabled = false)
-    public void verifyCorrectLocation(){
-    
+    public void verifyCorrectLocation() {
+
         sikuli.compareScreenWith("Iasi");
         driver.close();
     }
-    
+
 }

@@ -6,6 +6,7 @@
 package com.googlesites;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,8 +22,8 @@ public class WebDriverInstance {
     WebDriver driver;
 
     public WebDriver getCurrentDriverInstance() {
-        if(driver == null){
-        return startDriver();
+        if (driver == null) {
+            return startDriver();
         }
         return driver;
 
@@ -32,14 +33,16 @@ public class WebDriverInstance {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         return driver;
     }
-    
-    public void setCurrentDriver(WebDriver driver){
-        
+
+    public void setCurrentDriver(WebDriver driver) {
+
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        new Sikuli().focusOnBrowser();
     }
-    
-    public WebDriver getDriver(){
-    
+
+    public WebDriver getDriver() {
+
         return driver;
     }
 }
