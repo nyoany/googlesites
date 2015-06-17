@@ -35,19 +35,12 @@ public class MapsTests {
     static final FirefoxProfile profile = new FirefoxProfile();
     
     
-    @BeforeClass
-    public void before() {
-
+    @Test(priority = 1, groups = "sikuli")
+    public void navigateToMaps(){
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         driver.manage().window().maximize();
         WebDriverInstance wdi = new WebDriverInstance();
         wdi.setCurrentDriver(driver);
-    }
-
-    
-    @Test(priority = 1, groups = "sikuli")
-    public void navigateToMaps(){
-        
         overview = new Overview(driver);
         overview.navigateToOverviewPage();
         loginPage = overview.navigateToLogin();
@@ -63,12 +56,14 @@ public class MapsTests {
      sikuli.compareScreenWith("Iasi");   
      sikuli.findAndClose("GoogleMapsPopUp");
      maps.search("Iasi");
+     driver.close();
     }
     
     @Test(dependsOnMethods = {"navigateToMaps"}, groups = "sikuli", enabled = false)
     public void verifyCorrectLocation(){
     
         sikuli.compareScreenWith("Iasi");
+        driver.close();
     }
     
 }

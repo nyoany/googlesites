@@ -73,7 +73,7 @@ public class CreateSitePage {
     public void clickOnCapcha() {
 
         Sikuli sikuli = new Sikuli();
-        sikuli.findAndClick("D:\\photos\\captcha.png", "captcha icon");
+        sikuli.findAndClick("captcha.png", "captcha icon");
     }
 
     public Match verifyNotRobotDisplayed() throws FindFailed {

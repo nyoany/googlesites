@@ -21,10 +21,10 @@ public class WebDriverInstance {
     WebDriver driver;
 
     public WebDriver getCurrentDriverInstance() {
-        if(getDriver() == null){
+        if(driver == null){
         return startDriver();
         }
-        return getDriver();
+        return driver;
 
     }
 

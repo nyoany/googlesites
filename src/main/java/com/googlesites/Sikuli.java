@@ -26,7 +26,7 @@ import static org.testng.Assert.fail;
  */
 public class Sikuli {
 
-    public Match find(String path, String failMessage, double score) {
+    public boolean find(String path, String failMessage, double score) {
 
         String photoPath = ""; 
           if(path.contains("screenshots")){
@@ -43,21 +43,17 @@ public class Sikuli {
         } catch (FindFailed ex) {
             Logger.getLogger(Sikuli.class.getName()).log(Level.SEVERE, null, ex);
             fail("The " + failMessage + " has not been found on the current page.");
+            return false;
         }
        // m.highlight(2);
         assertNotNull(m, "The " + failMessage + " is not displayed correctly.");
         assertTrue(m.getScore() > score, "The match is lower than 70%, the " + failMessage + " is not displayed correctly, it is : " + m.getScore() * 100 + "% accurate.");
-        return m;
+        return true;
     }
 
-    public Match findAndClick(String path, String failMessage) {
+    public boolean findAndClick(String path, String failMessage) {
 
-        Match match = find(path, failMessage, 0.7);
-
-        if (match != null) {
-            match.click();
-        }
-        return match;
+        return find(path, failMessage, 0.7);
     }
 
     public void takeScreenshotTo(String locationName){
