@@ -41,7 +41,7 @@ public class CaptchaTest {
         driver.manage().window().maximize();
         sitesURLs.add("blanksitezzz");
         sitesURLs.add("intranetlintranetl111");
-       // sitesURLs.add("alf12opitds");
+        sitesURLs.add("alf12opitds");
         overview = new Overview(driver);
         overview.navigateToOverviewPage();
         loginPage = overview.navigateToLogin();
