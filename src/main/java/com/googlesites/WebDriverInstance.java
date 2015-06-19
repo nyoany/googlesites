@@ -19,9 +19,9 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class WebDriverInstance {
 
     static final FirefoxProfile profile = new FirefoxProfile();
-    WebDriver driver;
+    static WebDriver driver;
 
-    public WebDriver getCurrentDriverInstance() {
+    public static WebDriver getCurrentDriverInstance() {
         if (driver == null) {
             return startDriver();
         }
@@ -29,7 +29,7 @@ public class WebDriverInstance {
 
     }
 
-    public WebDriver startDriver() {
+    public static WebDriver startDriver() {
         driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
         return driver;
     }

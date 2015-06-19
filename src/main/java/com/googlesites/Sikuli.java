@@ -43,7 +43,7 @@ public class Sikuli {
             fail("The " + failMessage + " has not been found on the current page.");
             return null;
         }
-        // m.highlight(2);
+         m.highlight(2);
         assertNotNull(m, "The " + failMessage + " is not displayed correctly.");
         assertTrue(m.getScore() > score, "The match is lower than 70%, the " + failMessage + " is not displayed correctly, it is : " + m.getScore() * 100 + "% accurate.");
         return m;

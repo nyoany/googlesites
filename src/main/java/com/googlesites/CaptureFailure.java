@@ -7,34 +7,26 @@ package com.googlesites;
 
 /**
  *
- * @author P3700482
+ * @author Oana
  */
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.testng.IReporter;
-import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-public class ScreenShotOnFailure extends TestListenerAdapter {
+public class CaptureFailure extends TestListenerAdapter {
 
-    static final WebDriverInstance wdi = new WebDriverInstance();
-
+    
     @Override
     public void onTestFailure(ITestResult result) {
-
-        File scrFile = ((TakesScreenshot) wdi.getCurrentDriverInstance()).getScreenshotAs(OutputType.FILE);
+       
+        File scrFile = ((TakesScreenshot) WebDriverInstance.getCurrentDriverInstance()).getScreenshotAs(OutputType.FILE);
         DateFormat dateFormat = new SimpleDateFormat("dd_MMM_yyyy__hh_mm_ssaa");
         String destDir = "D:\\de invatat\\workspace\\testsOutput\\";
         new File(destDir).mkdirs();
@@ -43,7 +35,8 @@ public class ScreenShotOnFailure extends TestListenerAdapter {
         try {
             FileUtils.copyFile(scrFile, new File(destDir + destFile));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Something wrong happend at the creation of the screenshot.");
         }
+        WebDriverInstance.getCurrentDriverInstance().close();
     }
 }

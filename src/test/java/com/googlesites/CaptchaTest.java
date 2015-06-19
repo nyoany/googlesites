@@ -12,9 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -22,7 +19,7 @@ import org.testng.annotations.Test;
  *
  * @author Oana
  */
-@Listeners({ScreenShotOnFailure.class})
+@Listeners({CaptureFailure.class})
 public class CaptchaTest {
 
     List<String> sitesURLs = new ArrayList<String>();
@@ -44,7 +41,7 @@ public class CaptchaTest {
         driver.manage().window().maximize();
         sitesURLs.add("blanksitezzz");
         sitesURLs.add("intranetlintranetl111");
-        sitesURLs.add("alf12opitds");
+       // sitesURLs.add("alf12opitds");
         overview = new Overview(driver);
         overview.navigateToOverviewPage();
         loginPage = overview.navigateToLogin();

@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
  *
  * @author Oana
  */
-@Listeners({ScreenShotOnFailure.class})
+@Listeners({CaptureFailure.class})
 public class SanityTests {
 
     Site site;

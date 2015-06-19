@@ -73,21 +73,20 @@ public class Site {
         if (buttonLabel.equals("Cancel")) {
 
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
     }
 
     public void changeThePageTitleTo(String newTitle) {
 
         driver.findElement(By.cssSelector(EDIT_PAGE_TITLE)).clear();
         driver.findElement(By.cssSelector(EDIT_PAGE_TITLE)).sendKeys(newTitle);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public void changePageContentTo(String newContent) {
 
         driver.findElement(By.id(EDITABLE_CONTENT)).clear();
         driver.findElement(By.id(EDITABLE_CONTENT)).sendKeys(newContent);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      
     }
 
 }

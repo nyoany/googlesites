@@ -6,17 +6,12 @@
 package com.googlesites;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -25,7 +20,7 @@ import org.testng.annotations.Test;
  *
  * @author Oana
  */
-@Listeners({ScreenShotOnFailure.class})
+@Listeners({CaptureFailure.class})
 public class IntranetTests {
 
     Site site;
@@ -37,7 +32,7 @@ public class IntranetTests {
     Sikuli sikuli = new Sikuli();
     FirefoxProfile profile = new FirefoxProfile();
 
-    @DataProvider()
+    @DataProvider
     public static Object[][] intranetPages() {
         return new Object[][]{{"Documents", true}, {"Calendar", true}, {"Directory", true}, {"Discussion", true}, {"Announcements", true}, {"Sitemap", true}};
     }
