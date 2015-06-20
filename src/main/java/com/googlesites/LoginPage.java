@@ -8,6 +8,7 @@ package com.googlesites;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  *
@@ -23,12 +24,34 @@ public class LoginPage {
 
     public void typeEmail(String email) {
 
-        driver.findElement(By.id("Email")).sendKeys(email);
+      WebElement emailEl =  driver.findElement(By.id("Email"));
+      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+       
+        if(emailEl.getAttribute("value")!= null){
+        emailEl.clear();
+        }
+        emailEl.sendKeys(email);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        String actualSetPassword = emailEl.getAttribute("value");
+        if(!actualSetPassword.equals(email)){
+        typePassword(email);
+        }
     }
 
     public void typePassword(String password) {
 
-        driver.findElement(By.id("Passwd")).sendKeys(password);
+        WebElement pass = driver.findElement(By.id("Passwd"));
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+       
+        if(pass.getAttribute("value")!= null){
+        pass.clear();
+        }
+        pass.sendKeys(password);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        String actualSetPassword = pass.getAttribute("value");
+        if(!actualSetPassword.equals(password)){
+        typePassword(password);
+        }
     }
 
     public Sites signIn() {

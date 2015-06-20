@@ -12,6 +12,9 @@ package com.googlesites;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.testng.Assert.*;
 
 public class Site {
@@ -27,6 +30,7 @@ public class Site {
     private final String SAVE_CANCEL_BUTTONS = "sites-editor-button-sites-@buttonName@";
     private final String EDITABLE_CONTENT = "sites-tile-name-content-1-editing-editable-content";
     private final String ACCOUNT_CHOOSER_IDENTIFIER = "accountchooser-title";
+    private final String SITE_NOTICE = "//div[contains(text(), 'Your changes have been saved')]";
 
     Site(WebDriver driver) {
         this.driver = driver;
@@ -70,10 +74,12 @@ public class Site {
     public void clickOnButton(String buttonLabel) {
 
         driver.findElement(By.id(SAVE_CANCEL_BUTTONS.replace("@buttonName@", buttonLabel.toLowerCase()))).click();
-        if (buttonLabel.equals("Cancel")) {
-
+        if(buttonLabel.equals("Save")){
+        
+         WebDriverWait wait = new WebDriverWait(driver, 5);
+         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SITE_NOTICE)));
         }
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     public void changeThePageTitleTo(String newTitle) {

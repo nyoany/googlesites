@@ -45,7 +45,7 @@ public class Sikuli {
         }
          m.highlight(2);
         assertNotNull(m, "The " + failMessage + " is not displayed correctly.");
-        assertTrue(m.getScore() > score, "The match is lower than 70%, the " + failMessage + " is not displayed correctly, it is : " + m.getScore() * 100 + "% accurate.");
+        assertTrue(m.getScore() >= score, "The match is lower than 70%, the " + failMessage + " is not displayed correctly, it is : " + m.getScore() * 100 + "% accurate.");
         return m;
     }
 
@@ -75,7 +75,7 @@ public class Sikuli {
 
     public void compareScreenWith(String fileName) {
 
-        find("D:\\de invatat\\licence\\screenshots\\" + fileName + ".png", fileName + " page", 0.8);
+        find("D:\\de invatat\\licence\\screenshots\\" + fileName + ".png", fileName + " page", 0.7);
     }
 
     public boolean findAndClose(String path) {

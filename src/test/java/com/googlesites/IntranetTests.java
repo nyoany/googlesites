@@ -11,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import static org.testng.Assert.assertEquals;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -34,7 +33,7 @@ public class IntranetTests {
 
     @DataProvider
     public static Object[][] intranetPages() {
-        return new Object[][]{{"Documents", true}, {"Calendar", true}, {"Directory", true}, {"Discussion", true}, {"Announcements", true}, {"Sitemap", true}};
+        return new Object[][]{{"Documents", true}, {"Directory", true}, {"Discussion", true}, {"Announcements", true}, {"Sitemap", true}};
     }
 
     @Test(groups = "sikuli", enabled = false)
@@ -51,8 +50,6 @@ public class IntranetTests {
         intranet = new IntranetPage(driver);
         intranet.navigateTo("Documents");
         sikuli.find("Documents.png", "Documents page", 0.7);
-        intranet.navigateTo("Calendar");
-        sikuli.find("Calendar.png", "Calendar page", 0.7);
         intranet.navigateTo("Directory");
         sikuli.find("Directory.png", "Directory page", 0.7);
         intranet.navigateTo("Discussion");
