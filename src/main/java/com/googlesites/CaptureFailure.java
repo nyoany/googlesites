@@ -35,7 +35,7 @@ public class CaptureFailure extends TestListenerAdapter {
         try {
             FileUtils.copyFile(scrFile, new File(destDir + destFile));
         } catch (IOException e) {
-            System.out.println("Something wrong happend at the creation of the screenshot.");
+            System.out.println("Something wrong happend at the creation of the screenshot: " + e);
         }
         WebDriverInstance.getCurrentDriverInstance().close();
     }

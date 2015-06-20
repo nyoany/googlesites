@@ -84,11 +84,10 @@ public class IntranetTests {
 
         intranet.navigateTo(pageName);
         assertEquals(sikuli.find(pageName + ".png", pageName + " page", 0.7) != null, result);
+        if(pageName.equals("Sitemap")){
+          driver.close();
+        }
     }
 
-    @AfterClass
-    public void closeBrowser() {
-        driver.close();
-    }
 
 }
