@@ -35,7 +35,7 @@ public class CaptchaTest {
     public void createSite() {
 
         FirefoxProfile profile = new FirefoxProfile();
-        driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
+        driver = new FirefoxDriver(new FirefoxBinary(new File(Config.getPropertyValue("firefoxLocation"))), profile);
         WebDriverInstance wdi = new WebDriverInstance();
         wdi.setCurrentDriver(driver);
         driver.manage().window().maximize();

@@ -98,7 +98,7 @@ public class Sites {
                 driver.switchTo().window(handle);
             }
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         return new MapsPage(driver);
     }
 }

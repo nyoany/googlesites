@@ -26,13 +26,14 @@ import static org.testng.Assert.fail;
  */
 public class Sikuli {
 
+    
     public Match find(String path, String failMessage, double score) {
 
         String photoPath = "";
         if (path.contains("screenshots")) {
             photoPath = path;
         } else {
-            photoPath = "D:\\photos\\" + path;
+            photoPath = Config.getPropertyValue("photosLocation") + path;
         }
         Region r = new Region(new DesktopScreenRegion().getBounds());
         Pattern pattern = new Pattern(photoPath);
@@ -61,7 +62,7 @@ public class Sikuli {
 
     public void takeScreenshotTo(String locationName) {
 
-        File outputfile = new File("D:\\de invatat\\licence\\screenshots\\" + locationName + ".png");
+        File outputfile = new File(Config.getPropertyValue("screenshotsLocation")+ locationName + ".png");
         if (!outputfile.exists() && !outputfile.isDirectory()) {
             BufferedImage screenshot = new DesktopScreenRegion().capture();
             try {
@@ -75,14 +76,15 @@ public class Sikuli {
 
     public void compareScreenWith(String fileName) {
 
-        find("D:\\de invatat\\licence\\screenshots\\" + fileName + ".png", fileName + " page", 0.7);
+        find(Config.getPropertyValue("screenshotsLocation") + fileName + ".png", fileName + " page", 0.7);
     }
 
     public boolean findAndClose(String path) {
 
+        String photosLocation = Config.getPropertyValue("photosLocation");
         Region r = new Region(new DesktopScreenRegion().getBounds());
-        Pattern pattern = new Pattern("D:\\photos\\" + path + ".png");
-        Pattern closeButton = new Pattern("D:\\photos\\CloseButton.png");
+        Pattern pattern = new Pattern(photosLocation + path + ".png");
+        Pattern closeButton = new Pattern(photosLocation + "CloseButton.png");
         try {
             Match m = r.find(pattern);
             m.highlight(2);
@@ -115,7 +117,7 @@ public class Sikuli {
 
     public void focusOnBrowser() {
 
-        if (!find("D:\\photos\\firefoxOpen.png")) {
+        if (!find(Config.getPropertyValue("photosLocation") + "firefoxOpen.png")) {
 
             if (!findAndClick("firefoxClosed.png", "Closed Firefox")) {
                 fail("The Firefox browser has not been found.");

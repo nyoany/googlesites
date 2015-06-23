@@ -20,7 +20,6 @@ public class WebDriverInstance {
 
     static final FirefoxProfile profile = new FirefoxProfile();
     static WebDriver driver;
-
     public static WebDriver getCurrentDriverInstance() {
         if (driver == null) {
             return startDriver();
@@ -30,7 +29,7 @@ public class WebDriverInstance {
     }
 
     public static WebDriver startDriver() {
-        driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
+        driver = new FirefoxDriver(new FirefoxBinary(new File(Config.getPropertyValue("firefoxLocation"))), profile);
         return driver;
     }
 

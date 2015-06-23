@@ -28,7 +28,7 @@ public class CaptureFailure extends TestListenerAdapter {
        
         File scrFile = ((TakesScreenshot) WebDriverInstance.getCurrentDriverInstance()).getScreenshotAs(OutputType.FILE);
         DateFormat dateFormat = new SimpleDateFormat("dd_MMM_yyyy__hh_mm_ssaa");
-        String destDir = "D:\\de invatat\\workspace\\testsOutput\\";
+        String destDir = Config.getPropertyValue("failedTestsScreenshotsLocation");
         new File(destDir).mkdirs();
         String destFile = result.getMethod().getMethodName() + dateFormat.format(new Date()) + ".png";
 

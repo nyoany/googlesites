@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Regression Suite">
   
-    <test name="Regression">
+    <test name="Regression" preserve-order= "true">
 
  
         <classes>

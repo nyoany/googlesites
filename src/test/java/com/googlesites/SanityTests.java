@@ -31,7 +31,7 @@ public class SanityTests {
     @BeforeClass
     public void before() {
 
-        driver = new FirefoxDriver(new FirefoxBinary(new File("D:\\firefox 24\\firefox.exe")), profile);
+        driver = new FirefoxDriver(new FirefoxBinary(new File(Config.getPropertyValue("firefoxLocation"))), profile);
         driver.manage().window().maximize();
         WebDriverInstance wdi = new WebDriverInstance();
         wdi.setCurrentDriver(driver);
