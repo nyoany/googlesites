@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -32,9 +34,9 @@ public class LoginPage {
         }
         emailEl.sendKeys(email);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        String actualSetPassword = emailEl.getAttribute("value");
-        if(!actualSetPassword.equals(email)){
-        typePassword(email);
+        String actualSetEmail = emailEl.getAttribute("value");
+        if(!actualSetEmail.equals(email)){
+        typeEmail(email);
         }
     }
 
@@ -61,10 +63,26 @@ public class LoginPage {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return sites;
     }
+    
+    
+    public Sites clickNext() {
+
+        Sites sites = new Sites(driver);
+        if(driver.findElement(By.id("next"))!= null){
+        
+        driver.findElement(By.id("next")).click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Passwd")));
+       
+        }
+        return sites;
+    }
 
     public Sites logIn(String email, String password) {
 
         typeEmail(email);
+        clickNext();
         typePassword(password);
         return signIn();
     }
